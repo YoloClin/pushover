@@ -1,0 +1,17 @@
+#!/usr/bin/python3
+import argparse
+from pushover import pushover
+
+priority_help = """- -2: No notification / Alert
+-1: Quiet notification
+1: High priority (Bypass quiet hours)
+2: Always require user confirmation"""
+
+parser = argparse.ArgumentParser(description="Send pushover notification")
+parser.add_argument("message", type=str, help="Message", default="Test")
+parser.add_argument("--title", type=str, help="Title", nargs="?", default=None)
+parser.add_argument("--priority", type=int,
+                    help=priority_help, nargs="?", default=-1)
+args = parser.parse_args()
+
+pushover(args.message, args.title, args.priority)

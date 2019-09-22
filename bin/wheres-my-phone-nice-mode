@@ -1,0 +1,16 @@
+#!/usr/bin/python3
+import time
+from pushover import pushover
+
+conf = json.loads(open("/etc/pushover-credentials.json").read())
+api_token = conf["wheres-my-phone-token"]
+
+print("Sending...")
+pushover(message="FIND ME",
+         title="FIND ME",
+         priority=2,
+         api_token=api_token,
+         sound="persistent",
+         retry=30,
+         expire=35)
+time.sleep(3)
